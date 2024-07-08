@@ -3,7 +3,7 @@ import {
   OutlinedInput, Box, Container, InputLabel, InputAdornment, Grid, FormControl, FormHelperText,
 } from "@mui/material";
 
-const CoordinateAndParameters = ({ onCoordinateChange, onCoverageChange,ondurationChange }) => {
+const Coordinate = ({ onCoordinateChange, onCoverageChange,ondurationChange }) => {
   const [baseCoord, setBaseCoord] = useState({ lat: '', long: '' });
   const [reconCoord, setReconCoord] = useState({ lat: '', long: '' });
   const [size, setSize] = useState('');
@@ -130,4 +130,4 @@ const CoordinateAndParameters = ({ onCoordinateChange, onCoverageChange,ondurati
   );
 };
 
-export default CoordinateAndParameters;
+export default Coordinate;

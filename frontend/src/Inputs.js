@@ -25,10 +25,11 @@ import MenuIcon from '@mui/icons-material/Menu';
 
 import MapIcon from '@mui/icons-material/Map';
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import CoordinateAndParameters from "./CoordinateAndParameters";
+import Coordinate from "./Coordinate";
 import UnmannedSystems from "./UnmannedSystems";
 import ShowInputs from "./ShowInputs";
 import ShowMap from "./ShowMap";
+import Optimization from "./Optimization";
 
 const drawerWidth = 240;
 
@@ -255,16 +256,15 @@ const Inputs = () => {
             </Drawer>
 
               <Container maxWidth="lg" sx={{ mt: 12, mb: 4 }}>
-
                   <Container>
-                      <Accordion id="inputs">
+                      <Accordion id="data-inputs">
                           <AccordionSummary
                               expandIcon={<ExpandMoreIcon />}
                               aria-controls="panel1-content"
                               id="panel1-header"
                           >
                               <Typography sx={{ width: '33%', flexShrink: 0 }}>
-                                  Modify Model
+                                  Data Inputs
                               </Typography>
                               <Typography sx={{color: 'text.secondary'}}>Add/modify inputs to run model</Typography>
                           </AccordionSummary>
@@ -279,12 +279,6 @@ const Inputs = () => {
                               >
                                   <Card>
                                       <CardContent>
-                                          {/* CoordinateAndParameters */}
-                                          <CoordinateAndParameters
-                                              onCoordinateChange={handleCoordinateChange}
-                                              onCoverageChange={handleCoverageChange}
-                                              ondurationChange={handledurationChange}
-                                          />
                                           {/* Unmanned Systems */}
                                           <UnmannedSystems onUnmannedSystemsChange={handleUnmannedSystemsChange} />
                                       </CardContent>
@@ -292,15 +286,54 @@ const Inputs = () => {
                               </Box>
                           </AccordionDetails>
                       </Accordion>
-
-                      {/* ShowInputs Component */}
-                      <ShowInputs
-                          uavData={uavData}
-                          minCoverage={minCoverage}
-                          coordData={coordData}
-                          durationData={durationData}
-                      />
                   </Container>
+
+                  <Container sx={{ mt: 2, mb: 4 }}>
+                      <Accordion id="api-inputs">
+                          <AccordionSummary
+                              expandIcon={<ExpandMoreIcon />}
+                              aria-controls="panel1-content"
+                              id="panel1-header"
+                          >
+                              <Typography sx={{ width: '33%', flexShrink: 0 }}>
+                                  API Inputs
+                              </Typography>
+                              <Typography sx={{color: 'text.secondary'}}>Add/modify inputs to run model</Typography>
+                          </AccordionSummary>
+                          <AccordionDetails>
+                              <Box
+                                  component="div"
+                                  sx={{
+                                      '& > :not(style)': { m: 1 },
+                                  }}
+                                  noValidate
+                                  autoComplete="off"
+                              >
+                                  <Card>
+                                      <CardContent>
+                                          {/* Coordinate */}
+                                          <Coordinate
+                                              onCoordinateChange={handleCoordinateChange}
+                                          />
+                                          {/* Optimization */}
+                                          <Optimization
+                                              onCoverageChange={handleCoverageChange}
+                                              ondurationChange={handledurationChange}
+                                          />
+                                      </CardContent>
+                                  </Card>
+                              </Box>
+                          </AccordionDetails>
+                      </Accordion>
+                  </Container>
+
+                  {/* ShowInputs Component */}
+                  <ShowInputs
+                      uavData={uavData}
+                      minCoverage={minCoverage}
+                      coordData={coordData}
+                      durationData={durationData}
+                  />
 
               </Container>
           </Box>
